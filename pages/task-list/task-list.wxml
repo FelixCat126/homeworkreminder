@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="header">
+    <view class="title-box">
+      <text class="title">今日任务</text>
+    </view>
+    <view class="subtitle">任务清单</view>
+  </view>
+
+  <view class="list" wx:if="{{!isEmpty}}">
+    <view class="homework-group" wx:for="{{groupedTasks}}" wx:for-item="group" wx:key="homeworkTitle">
+      <view class="homework-header">
+        <text class="homework-title">{{group.homeworkTitle || '其他任务'}}</text>
+        <text class="homework-count">{{group.done}}/{{group.total}}</text>
+      </view>
+      
+      <view
+        class="task-item {{item.completed ? 'done' : ''}}"
+        wx:for="{{group.tasks}}"
+        wx:key="id"
+        bindtap="goToTimer"
+        data-task="{{item}}"
+      >
+        <view class="status-indicator">
+          <text wx:if="{{item.completed}}" class="status-text done">已完成</text>
+          <text wx:else class="status-text todo">待办</text>
+        </view>
+        <text class="task-title">{{item.title}}</text>
+        <view
+          class="btn-del"
+          data-id="{{item.id}}"
+          catchtap="deleteTask"
+        >✖</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-icon">📂</view>
+    <text class="empty-text">空空如也</text>
+    <text class="empty-hint">今天还没有任务哦</text>
+    <view class="btn-add-empty" bindtap="goAdd">创建新任务</view>
+  </view>
+
+  <!-- 悬浮添加按钮 FAB -->
+  <view class="fab-add" bindtap="goAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

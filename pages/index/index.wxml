@@ -1,0 +1,107 @@
+<wxs module="tools">
+  module.exports.formatTime = function(seconds, duration) {
+    if (typeof seconds !== 'undefined' && seconds !== null) {
+      var m = Math.floor(seconds / 60);
+      var s = seconds % 60;
+      var sStr = s < 10 ? '0' + s : s;
+      var mStr = m < 10 ? '0' + m : m;
+      return '剩余 ' + mStr + ':' + sStr;
+    }
+    return (duration || 20) + ' min';
+  }
+</wxs>
+<view class="page">
+  <!-- 标题区 -->
+  <view class="header">
+    <view class="header-left">
+      <view class="title-box">
+        <text class="title">作了么？</text>
+      </view>
+      <view class="subtitle">作业大挑战 · 随机选一选</view>
+      <view class="time-stat" wx:if="{{totalDuration > 0}}">
+        今日总时长：<text class="time-val">{{totalDuration}}</text> 分钟
+      </view>
+    </view>
+    <view class="header-right" bindtap="goHistory">
+      <text class="history-icon">📜</text>
+    </view>
+  </view>
+
+  <!-- 转盘区 -->
+  <view class="wheel-area" wx:if="{{!isEmpty}}">
+    <view class="pointer"></view>
+    
+    <view class="wheel-container">
+      <view
+        class="wheel-wrap"
+        style="transform: rotate({{wheelAngle}}deg)"
+      >
+        <view class="wheel-bg" style="background: {{wheelGradient}}">
+          <!-- 分割线层 -->
+          <view 
+            class="wheel-divider" 
+            wx:for="{{sectors}}" 
+            wx:key="id"
+            style="transform: {{item.dividerTransform}}"
+          ></view>
+        </view>
+        <view class="wheel-center">GO!</view>
+        <view class="sector-labels">
+          <view
+            class="sector-label"
+            wx:for="{{sectors}}"
+            wx:key="id"
+            style="transform: {{item.transform}}"
+          >
+            <text class="sector-text">{{item.title}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view
+      class="btn-spin {{spinning ? 'disabled' : ''}}"
+      bindtap="spin"
+      wx:if="{{tasks.length > 1}}"
+    >
+      {{spinning ? '转盘中…' : '开始挑战'}}
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:else>
+    <view class="empty-icon">🎮</view>
+    <text class="empty-text">暂无任务</text>
+    <text class="empty-hint">点击下方添加作业，开启挑战</text>
+    <view class="btn-add-empty" bindtap="goAdd">添加新任务</view>
+  </view>
+
+  <!-- 选中卡片 -->
+  <view class="selected-card" wx:if="{{selectedTask && !spinning}}">
+    <view class="selected-label">当前目标</view>
+    <view class="selected-row">
+      <view class="selected-text-col">
+        <view class="selected-top-row">
+          <text class="selected-homework">{{selectedTask.homeworkTitle || '随机任务'}}</text>
+          <text class="selected-duration">{{tools.formatTime(selectedTask.remainingSeconds, selectedTask.duration)}}</text>
+        </view>
+        <text class="selected-title">{{selectedTask.title}}</text>
+      </view>
+      <view class="btn-start-task" bindtap="startTimer">
+        开始
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="nav">
+    <view class="nav-item task-btn" bindtap="goTaskList">
+      <text class="nav-icon">📝</text>
+      <text class="nav-text">任务列表</text>
+    </view>
+    <view class="nav-item add-btn" bindtap="goAdd">
+      <text class="nav-icon">➕</text>
+      <text class="nav-text">添加作业</text>
+    </view>
+  </view>
+</view>

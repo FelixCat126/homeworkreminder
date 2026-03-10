@@ -1,0 +1,225 @@
+.page {
+  min-height: 100vh;
+  padding: 40rpx;
+  background: var(--bg);
+  background-image: linear-gradient(0deg, #E1E1E1 1px, transparent 1px),
+  linear-gradient(90deg, #E1E1E1 1px, transparent 1px);
+  background-size: 24rpx 24rpx;
+}
+
+/* 趋势图区域 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trend-section {
+  margin-bottom: 40rpx;
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 32rpx;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.3s forwards;
+}
+
+.trend-slogan {
+  font-size: 32rpx;
+  font-weight: 900;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 24rpx;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.trend-canvas {
+  width: 100%;
+  height: 200rpx;
+}
+
+.header {
+  margin-bottom: 40rpx;
+}
+
+.title-box {
+  display: inline-block;
+  background: var(--primary);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 16rpx 32rpx;
+  box-shadow: var(--shadow);
+  transform: rotate(-1deg);
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 900;
+  color: var(--light);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--dark);
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  opacity: 0.6;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.history-item {
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.history-item:active {
+  transform: translate(2rpx, 2rpx);
+  box-shadow: var(--shadow-active);
+}
+
+.history-item.perfect {
+  background: #fff8e1; /* 淡黄色背景 */
+  border-color: var(--dark);
+}
+
+.history-header {
+  padding: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-badge {
+  background: var(--dark);
+  color: var(--light);
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+.progress-box {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.progress-text {
+  font-size: 32rpx;
+  font-weight: 900;
+  color: var(--dark);
+}
+
+.badge-perfect {
+  background: var(--accent);
+  color: var(--dark);
+  padding: 4rpx 12rpx;
+  border: 2rpx solid var(--dark);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 900;
+  transform: rotate(5deg);
+}
+
+/* 详情展开区 */
+.history-detail {
+  background: rgba(0,0,0,0.03);
+  padding: 0 32rpx 32rpx;
+}
+
+.detail-divider {
+  height: 2rpx;
+  background: var(--dark);
+  opacity: 0.1;
+  margin-bottom: 24rpx;
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+  color: var(--dark);
+}
+
+.detail-icon {
+  margin-right: 12rpx;
+  font-weight: 900;
+  width: 32rpx;
+}
+
+.detail-title {
+  flex: 1;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.detail-time {
+  font-size: 24rpx;
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: 16rpx;
+  background: rgba(108, 92, 231, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  align-self: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.detail-title.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* 空状态 */
+.empty {
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx;
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  font-weight: 900;
+  color: var(--dark);
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #636e72;
+  margin-bottom: 32rpx;
+}
+
+.btn-add-empty {
+  padding: 20rpx 48rpx;
+  background: var(--primary);
+  color: var(--light);
+  font-weight: 800;
+  border: var(--border-width) solid var(--dark);
+  border-radius: 40rpx;
+}

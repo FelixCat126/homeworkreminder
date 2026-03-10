@@ -1,0 +1,70 @@
+/**app.wxss**/
+page {
+  /* 潮流配色 - Z世代风格 */
+  --primary: #6C5CE7;      /* 电光紫 - 主色 */
+  --secondary: #00B894;    /* 薄荷绿 - 辅色 */
+  --accent: #FDCB6E;       /* 活力黄 - 强调 */
+  --danger: #FF7675;       /* 珊瑚红 - 警告/删除 */
+  --dark: #2D3436;         /* 墨黑 - 文字/边框 */
+  --light: #FFFFFF;        /* 纯白 */
+  --bg: #F8F9FA;           /* 浅灰底色 */
+  
+  /* 核心设计语言：粗边框 + 硬阴影 */
+  --border-width: 4rpx;
+  --border-color: #2D3436;
+  --radius: 24rpx;
+  --shadow: 6rpx 6rpx 0px var(--dark);
+  --shadow-active: 2rpx 2rpx 0px var(--dark);
+  
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Arial', sans-serif;
+  background-color: var(--bg);
+  background-image: radial-gradient(#E1E1E1 1px, transparent 1px);
+  background-size: 20px 20px; /* 点阵背景 */
+  color: var(--dark);
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+view, text, button, input {
+  box-sizing: border-box;
+}
+
+/* 通用按钮样式 - 游戏手柄风格 */
+.btn-game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 32rpx;
+  font-weight: 800;
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.1s;
+}
+
+.btn-game:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: var(--shadow-active);
+}
+
+.btn-game.secondary {
+  background: var(--secondary);
+}
+
+.btn-game.accent {
+  background: var(--accent);
+  color: var(--dark);
+}
+
+/* 卡片通用样式 - 贴纸风格 */
+.card-sticker {
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}

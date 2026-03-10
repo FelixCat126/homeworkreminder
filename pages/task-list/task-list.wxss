@@ -1,0 +1,240 @@
+.page {
+  min-height: 100vh;
+  padding: 40rpx;
+  padding-bottom: 200rpx;
+  background: var(--bg);
+}
+
+.header {
+  margin-bottom: 40rpx;
+}
+
+.title-box {
+  display: inline-block;
+  background: var(--secondary);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 12rpx 24rpx;
+  box-shadow: var(--shadow);
+  transform: rotate(-1deg);
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 900;
+  color: var(--dark);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--dark);
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  opacity: 0.6;
+}
+
+/* 分组样式 */
+.homework-group {
+  margin-bottom: 32rpx;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+.homework-group::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  bottom: 12rpx;
+  width: 8rpx;
+  background: var(--dark);
+  border-radius: 4rpx;
+  opacity: 0.2;
+}
+
+.homework-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding: 0 8rpx;
+}
+
+.homework-title {
+  font-size: 28rpx;
+  font-weight: 900;
+  color: var(--primary);
+  background: rgba(108, 92, 231, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.homework-count {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--dark);
+  opacity: 0.6;
+}
+
+/* 列表样式 */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24rpx; /* 增加任务间距 */
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+.task-item:active {
+  transform: translate(2rpx, 2rpx);
+  box-shadow: var(--shadow-active);
+}
+
+.task-item.done {
+  background: #dfe6e9;
+  box-shadow: none;
+  border-color: #b2bec3;
+  opacity: 0.8;
+}
+
+.task-item.done .task-title {
+  text-decoration: line-through;
+  color: #636e72;
+}
+
+.status-indicator {
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.status-text {
+  font-size: 22rpx;
+  font-weight: 900;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid var(--dark);
+}
+
+.status-text.todo {
+  background: var(--light);
+  color: #636e72;
+}
+
+.status-text.done {
+  background: var(--primary);
+  color: #fff;
+}
+
+.task-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+.btn-del {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: var(--danger);
+  font-weight: 900;
+  opacity: 0.6;
+}
+
+/* 空状态 */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+  opacity: 0.8;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20rpx); }
+}
+
+.empty-text {
+  font-size: 36rpx;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 8rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #636e72;
+  margin-bottom: 40rpx;
+}
+
+.btn-add-empty {
+  padding: 24rpx 48rpx;
+  background: var(--primary);
+  color: var(--light);
+  font-weight: 800;
+  border: var(--border-width) solid var(--dark);
+  border-radius: 50rpx;
+  box-shadow: var(--shadow);
+}
+
+/* FAB 悬浮按钮 */
+.fab-add {
+  position: fixed;
+  bottom: 60rpx;
+  right: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: var(--accent);
+  border: var(--border-width) solid var(--dark);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: pulse 2s infinite;
+}
+
+.fab-icon {
+  font-size: 64rpx;
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1;
+  margin-top: -8rpx;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

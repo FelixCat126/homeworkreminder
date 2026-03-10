@@ -1,0 +1,455 @@
+.page {
+  min-height: 100vh;
+  padding: 40rpx;
+  padding-bottom: 200rpx;
+  background: var(--bg);
+  background-image: linear-gradient(0deg, #E1E1E1 1px, transparent 1px),
+  linear-gradient(90deg, #E1E1E1 1px, transparent 1px);
+  background-size: 24rpx 24rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40rpx;
+}
+
+.header-left {
+  text-align: left;
+}
+
+.header-right {
+  width: 88rpx;
+  height: 88rpx;
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+}
+
+.header-right:active {
+  transform: translate(2rpx, 2rpx);
+  box-shadow: var(--shadow-active);
+}
+
+.history-icon {
+  font-size: 40rpx;
+}
+
+.title-box {
+  display: inline-block;
+  background: var(--accent);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 16rpx 32rpx;
+  box-shadow: var(--shadow);
+  transform: rotate(-2deg);
+}
+
+.title {
+  display: block;
+  font-size: 64rpx;
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -2rpx;
+}
+
+.subtitle {
+  margin-top: 24rpx; /* 增加间距 */
+  font-size: 24rpx;
+  color: var(--dark);
+  font-weight: 600;
+  background: #FFF;
+  border: 2rpx solid var(--dark);
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+  display: inline-block;
+  transform: rotate(1deg);
+}
+
+.time-stat {
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: var(--dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.time-val {
+  font-size: 32rpx;
+  color: var(--primary);
+  margin: 0 8rpx;
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-thickness: 4rpx;
+}
+
+/* 罗盘区域 - 严格居中 */
+.wheel-area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+/* 指针设计 - 更加夸张醒目 */
+.pointer {
+  position: absolute;
+  top: -24rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 24rpx solid transparent;
+  border-right: 24rpx solid transparent;
+  border-top: 60rpx solid var(--danger);
+  z-index: 10;
+  filter: drop-shadow(0 4rpx 0 var(--dark));
+}
+
+.wheel-container {
+  width: 600rpx;
+  height: 600rpx;
+  position: relative;
+  /* 移除外框和背景，让转盘更干净 */
+  /* padding: 24rpx; */
+  /* border: var(--border-width) solid var(--dark); */
+  /* border-radius: 50%; */
+  /* background: #FFF; */
+  /* box-shadow: var(--shadow); */
+}
+
+.wheel-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  will-change: transform;
+  border-radius: 50%;
+  /* 添加转盘自身的阴影和边框 */
+  box-shadow: var(--shadow);
+}
+
+/* 转盘背景 - 粗边框 */
+.wheel-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--dark);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 扇区分割线 */
+.wheel-divider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4rpx; /* 明显的分界线宽度 */
+  height: 50%;
+  background: var(--dark); /* 黑线分割 */
+  transform-origin: 50% 100%;
+  z-index: 1;
+}
+
+/* 转盘中心 */
+.wheel-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100rpx;
+  height: 100rpx;
+  background: var(--light);
+  border-radius: 50%;
+  border: var(--border-width) solid var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 900;
+  color: var(--dark);
+  z-index: 3;
+  box-shadow: 0 0 0 8rpx rgba(255, 255, 255, 0.5);
+}
+
+.sector-labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sector-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 230rpx;
+  margin-left: -115rpx;
+  margin-top: -24rpx;
+  text-align: center;
+  transform-origin: 50% 50%;
+}
+
+.sector-text {
+  display: inline-block;
+  font-size: 22rpx;
+  color: var(--light);
+  font-weight: 800;
+  text-shadow: 2rpx 2rpx 0 var(--dark);
+  white-space: nowrap;
+  background: rgba(0,0,0,0.2);
+  padding: 4rpx 8rpx;
+  border-radius: 8rpx;
+}
+
+/* 按钮 - 游戏风格 */
+.btn-spin {
+  margin-top: 48rpx;
+  width: 320rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: var(--primary);
+  color: var(--light);
+  font-size: 36rpx;
+  font-weight: 900;
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all 0.1s;
+  align-self: center;
+}
+
+.btn-spin:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: var(--shadow-active);
+}
+
+.btn-spin.disabled {
+  background: #b2bec3;
+  color: #636e72;
+  box-shadow: none;
+  transform: translate(4rpx, 4rpx);
+}
+
+/* 空状态 - 像素画风格 */
+.empty {
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transform: rotate(1deg);
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+  animation: bounce 2s infinite;
+}
+
+.empty-text {
+  font-size: 36rpx;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #636e72;
+  margin-bottom: 32rpx;
+}
+
+.btn-add-empty {
+  padding: 20rpx 48rpx;
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 800;
+  border: var(--border-width) solid var(--dark);
+  border-radius: 50rpx;
+  box-shadow: 4rpx 4rpx 0 var(--dark);
+}
+
+/* 选中任务卡片 - 醒目 */
+.selected-card {
+  margin-top: 40rpx;
+  background: var(--secondary); /* 绿色底 */
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 32rpx;
+  box-shadow: var(--shadow);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8) translateY(20rpx); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.selected-label {
+  font-size: 24rpx;
+  color: var(--dark);
+  opacity: 0.8;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+
+.selected-row {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20rpx;
+  border-radius: 16rpx;
+  border: 2rpx solid var(--dark);
+}
+
+.btn-start-task {
+  padding: 16rpx 32rpx;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 900;
+  border-radius: 40rpx;
+  border: var(--border-width) solid var(--dark);
+  box-shadow: 4rpx 4rpx 0 var(--dark);
+  font-size: 28rpx;
+  margin-left: 24rpx;
+  flex-shrink: 0;
+}
+
+.btn-start-task:active {
+  transform: translate(2rpx, 2rpx);
+  box-shadow: 2rpx 2rpx 0 var(--dark);
+}
+
+.selected-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-top-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 4rpx;
+}
+
+.selected-homework {
+  font-size: 22rpx;
+  font-weight: 900;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+  margin-bottom: 0;
+}
+
+.selected-duration {
+  font-size: 22rpx;
+  color: var(--dark);
+  font-weight: 700;
+  opacity: 0.6;
+  background: #dfe6e9;
+  padding: 2rpx 8rpx;
+  border-radius: 8rpx;
+}
+
+.selected-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.selected-title.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* 底部悬浮导航 - 游戏手柄风格 */
+.nav {
+  position: fixed;
+  bottom: 64rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32rpx;
+  z-index: 100;
+  pointer-events: none; /* 容器透传点击 */
+}
+
+/* 按钮基础样式 - 卡通胶囊 */
+.nav-item {
+  pointer-events: auto; /* 按钮可点击 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 20rpx 40rpx; /* 加大内边距 */
+  border: var(--border-width) solid var(--dark);
+  border-radius: 60rpx; /* 更圆润 */
+  box-shadow: 6rpx 6rpx 0 var(--dark); /* 硬阴影 */
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* 弹性动效 */
+  min-width: 240rpx; /* 统一最小宽度，保证对齐 */
+}
+
+.nav-item:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: 2rpx 2rpx 0 var(--dark);
+}
+
+.nav-icon {
+  font-size: 36rpx;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.nav-text {
+  font-size: 30rpx; /* 字号加大 */
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 0;
+}
+
+/* 左侧：任务列表 - 白色/淡蓝风格 */
+.nav-item.task-btn {
+  background: #FFFFFF;
+}
+
+.nav-item.task-btn:active {
+  background: #f0f0f0;
+}
+
+/* 右侧：添加作业 - 黄色醒目风格 */
+.nav-item.add-btn {
+  background: var(--accent);
+}
+
+.nav-item.add-btn:active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.nav-item.add-btn:active .nav-text {
+  color: #fff;
+}

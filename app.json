@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/task-list/task-list",
+    "pages/add-homework/add-homework",
+    "pages/celebration/celebration",
+    "pages/history/history",
+    "pages/timer/timer"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F8F9FA",
+    "navigationBarTitleText": "作了么？",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F9FA"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,33 @@
+<view class="page">
+  <!-- 顶部图片区域 - 宽度填充，不占满全屏 -->
+  <view class="hero-image-wrap">
+    <image class="hero-image" src="/images/finish_bg.png" mode="widthFix" />
+  </view>
+  
+  <view class="content-section">
+    <view class="title-box">
+      <text class="slogan">今日一步</text>
+    </view>
+    
+    <text class="sub">任务全部完成！</text>
+    
+    <!-- 随机鼓励语区域 -->
+    <view class="quote-box">
+      <text class="quote-text">“{{randomQuote}}”</text>
+    </view>
+    
+    <view class="btn-group">
+      <view class="btn-game" bindtap="goHome">返回首页</view>
+    </view>
+  </view>
+  
+  <!-- 简单的纸屑效果 -->
+  <view class="confetti-container">
+    <view
+      class="confetti-dot"
+      wx:for="{{confetti}}"
+      wx:key="id"
+      style="left: {{item.left}}%; animation-delay: {{item.delay}}s; background: {{item.color}}"
+    />
+  </view>
+</view>

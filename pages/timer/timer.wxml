@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="timer-container">
+    <view class="timer-circle">
+      <view class="timer-content">
+        <text class="timer-label">剩余时间</text>
+        <text class="timer-value">{{timeStr}}</text>
+        <text class="task-title">{{taskTitle}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="controls">
+    <view class="btn-control pause" bindtap="handleToggleOrAdd">
+      {{remainingSeconds <= 0 ? '加时' : (isRunning ? '暂停' : '继续')}}
+    </view>
+    <view class="btn-control complete" bindtap="finishTask">
+      完成
+    </view>
+  </view>
+
+  <!-- 加时弹窗 -->
+  <view class="modal-mask" wx:if="{{showAddTimeModal}}">
+    <view class="modal-box">
+      <view class="modal-title">加时</view>
+      <view class="modal-body">
+        <text class="modal-label">加时</text>
+        <input class="modal-input" type="number" value="{{addTimeVal}}" bindinput="onAddTimeInput" focus="{{showAddTimeModal}}"/>
+        <text class="modal-unit">min</text>
+      </view>
+      <view class="modal-footer">
+        <view class="btn-modal btn-cancel" bindtap="cancelAddTime">取消</view>
+        <view class="btn-modal btn-confirm" bindtap="confirmAddTime">确定</view>
+      </view>
+    </view>
+  </view>
+</view>

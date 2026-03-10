@@ -1,0 +1,62 @@
+<wxs module="tools">
+  module.exports.formatDuration = function(seconds) {
+    if (!seconds) return '';
+    var m = Math.floor(seconds / 60);
+    var s = seconds % 60;
+    var sStr = s < 10 ? '0' + s : s;
+    return '总耗时 ' + m + ':' + sStr;
+  }
+</wxs>
+<view class="page">
+  <view class="trend-section" wx:if="{{history.length > 0}}">
+    <view class="trend-slogan">{{trendSlogan}}</view>
+    <canvas type="2d" id="trendChart" class="trend-canvas" />
+  </view>
+
+  <view class="header">
+    <view class="title-box">
+      <text class="title">历史挑战</text>
+    </view>
+    <view class="subtitle">辉煌战绩 · 一目了然</view>
+  </view>
+
+  <view class="history-list" wx:if="{{history.length > 0}}">
+    <view
+      class="history-item {{item.isAllDone ? 'perfect' : ''}}"
+      wx:for="{{history}}"
+      wx:key="date"
+      bindtap="toggleExpand"
+      data-idx="{{index}}"
+    >
+      <view class="history-header">
+        <view class="date-badge">{{item.date}}</view>
+        <view class="progress-box">
+          <text class="progress-text">{{item.done}} / {{item.total}}</text>
+          <view class="badge-perfect" wx:if="{{item.isAllDone}}">完美</view>
+        </view>
+      </view>
+
+      <!-- 展开详情 -->
+      <view class="history-detail" wx:if="{{item.expanded}}">
+        <view class="detail-divider"></view>
+        <view
+          class="detail-row"
+          wx:for="{{item.tasks}}"
+          wx:for-item="task"
+          wx:key="id"
+        >
+          <text class="detail-icon">{{task.completed ? '✔' : '⭕'}}</text>
+          <text class="detail-title {{task.completed ? 'done' : ''}}">{{task.title}}</text>
+          <text class="detail-time" wx:if="{{task.timeSpent}}">{{tools.formatDuration(task.timeSpent)}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <view class="empty-icon">📜</view>
+    <text class="empty-text">暂无记录</text>
+    <text class="empty-hint">坚持完成任务，这里会丰富起来</text>
+    <view class="btn-add-empty" bindtap="goBack">去挑战</view>
+  </view>
+</view>

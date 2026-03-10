@@ -1,0 +1,206 @@
+.page {
+  min-height: 100vh;
+  padding: 40rpx;
+  padding-bottom: 200rpx;
+  background: var(--bg);
+}
+
+.header {
+  margin-bottom: 40rpx;
+}
+
+.title-box {
+  display: inline-block;
+  background: var(--primary);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 12rpx 24rpx;
+  box-shadow: var(--shadow);
+  transform: rotate(1deg);
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: 900;
+  color: var(--light);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--dark);
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  opacity: 0.6;
+}
+
+.form-container {
+  background: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: var(--radius);
+  padding: 40rpx;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: 40rpx;
+}
+
+.label {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 16rpx;
+  letter-spacing: 2rpx;
+}
+
+.input-box {
+  width: 100%;
+  height: 96rpx;
+  background: #dfe6e9;
+  border: var(--border-width) solid var(--dark);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--dark);
+  transition: all 0.2s;
+}
+
+.input-box:focus {
+  background: #FFF;
+  box-shadow: 4rpx 4rpx 0 var(--primary);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.task-index {
+  width: 48rpx;
+  height: 48rpx;
+  background: var(--dark);
+  color: var(--light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 900;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.task-inputs-wrap {
+  flex: 1;
+  display: flex;
+  gap: 12rpx;
+}
+
+.title-input {
+  flex: 2.5; /* 稍微减少标题输入框的比例 */
+}
+
+.duration-input-wrap {
+  flex: 1.2; /* 增加时长输入框的比例，容纳更多位数 */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.duration-input {
+  width: 100%;
+  padding-right: 60rpx; /* 增加右侧内边距，适应 'min' */
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.unit {
+  position: absolute;
+  right: 16rpx; /* 稍微右移 */
+  font-size: 22rpx;
+  color: #636e72;
+  font-weight: 700;
+  pointer-events: none;
+  background: #dfe6e9; /* 遮挡背景，防止文字穿透 */
+  padding-left: 4rpx;
+}
+
+.btn-remove {
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--danger);
+  color: var(--light);
+  border: var(--border-width) solid var(--dark);
+  border-radius: 12rpx;
+  font-size: 40rpx;
+  line-height: 1;
+  box-shadow: 2rpx 2rpx 0 var(--dark);
+}
+
+.btn-add-task {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  text-align: center;
+  background: var(--light);
+  color: var(--secondary);
+  font-weight: 900;
+  border: 4rpx dashed var(--secondary);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  transition: all 0.2s;
+}
+
+.btn-add-task:active {
+  background: #f0fdf9;
+  transform: scale(0.98);
+}
+
+.footer-actions {
+  margin-top: 48rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 112rpx;
+  line-height: 112rpx;
+  text-align: center;
+  background: #FFFFFF; /* 纯白常态 */
+  color: var(--dark); /* 深色文字 */
+  font-size: 36rpx;
+  font-weight: 900;
+  border: var(--border-width) solid var(--dark);
+  border-radius: 56rpx;
+  box-shadow: 4rpx 4rpx 0 var(--dark); /* 硬阴影 */
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+}
+
+.btn-submit.active {
+  background: var(--primary); /* 激活变电光紫 */
+  color: #FFF; /* 白色文字 */
+  box-shadow: 8rpx 8rpx 0 var(--dark);
+  transform: translateY(-4rpx);
+}
+
+.btn-submit.active:active {
+  transform: translateY(0);
+  box-shadow: 4rpx 4rpx 0 var(--dark);
+}

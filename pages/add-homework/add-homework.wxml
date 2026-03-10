@@ -1,0 +1,69 @@
+<view class="page">
+  <view class="header">
+    <view class="title-box">
+      <text class="title">新任务</text>
+    </view>
+    <view class="subtitle">创建新挑战</view>
+  </view>
+
+  <view class="form-container">
+    <view class="form-group">
+      <text class="label">作业名称</text>
+      <input
+        class="input-box"
+        placeholder="例如：数学练习册 P12"
+        placeholder-style="color: #b2bec3"
+        value="{{homeworkTitle}}"
+        bindinput="onHomeworkInput"
+      />
+    </view>
+
+    <view class="form-group">
+      <text class="label">任务拆分</text>
+      <view class="task-list" wx:for="{{taskInputs}}" wx:key="index">
+        <view class="task-row">
+          <view class="task-index">{{index + 1}}</view>
+          <view class="task-inputs-wrap">
+            <input
+              class="input-box small title-input"
+              placeholder="输入小任务..."
+              placeholder-style="color: #b2bec3"
+              value="{{item.title}}"
+              data-idx="{{index}}"
+              bindinput="onTaskInput"
+            />
+            <view class="duration-input-wrap">
+              <input
+                class="input-box small duration-input"
+                placeholder="20"
+                type="number"
+                placeholder-style="color: #b2bec3"
+                value="{{item.duration}}"
+                data-idx="{{index}}"
+                bindinput="onDurationInput"
+              />
+              <text class="unit">min</text>
+            </view>
+          </view>
+          <view
+            class="btn-remove"
+            data-idx="{{index}}"
+            bindtap="removeTaskSlot"
+            wx:if="{{taskInputs.length > 1}}"
+          >×</view>
+        </view>
+      </view>
+      
+      <view class="btn-add-task" bindtap="addTaskSlot">
+        <text>+ 添加更多任务</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-actions">
+    <view
+      class="btn-submit {{canSubmit ? 'active' : ''}}"
+      bindtap="submit"
+    >确认创建</view>
+  </view>
+</view>
